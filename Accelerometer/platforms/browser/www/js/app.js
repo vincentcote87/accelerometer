@@ -7,6 +7,7 @@ if (window.DeviceOrientationEvent) {
 let x, y, z;
 let r, g, b;
 let myText = "";
+let radius = 0;
 
 function move(e) {
   z = e.alpha;
@@ -23,6 +24,7 @@ function draw() {
   Number(y) < 0 ? r = map(Number(y), -80, 0, 0, 127, true) : r = map(Number(y), 0, 80, 127, 255, true);
   g = map(Math.abs(Number(x)), 0, 90, 200, 10, true);
   Number(y) < 0 ? b = map(Number(y), -80, 0, 255, 127, true) : b = map(Number(y), 0, 80, 127, 0, true);
+  radius = map(Number(x), 0, 65, 0, 50, true)
 
   background(r, g, b);
   if (Number(x) > 40) {
@@ -48,4 +50,7 @@ function draw() {
   textAlign(CENTER);
   text(myText, (width / 2), (height / 2));
   fill(b, r, g);
+
+  rect(((width / 2) - 50), ((height / 2) + 100), 100, 100, radius);
+  fill(g, r, b);
 };
